@@ -1,0 +1,190 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CineView</title>
+  <base target="_self">
+  <meta name="description" content="A Bootstrap 4 admin dashboard theme that will get you started. The sidebar toggles off-canvas on smaller screens. This example also include large stat blocks, modal and cards. The top navbar is controlled by a separate hamburger toggle button."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" value="notranslate">
+  <link rel="shortcut icon" href="/images/cp_ico.png">
+
+
+  <!--stylesheets / link tags loaded here-->
+
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+  <style type="text/css">
+    
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="flex-row d-flex">
+      <a class="navbar-brand mb-1" href="#"><i class="fa fa-film" aria-hidden="true"></i> CineView</a>
+      
+    </div>
+    <div class="navbar-collapse collapse" id="collapsingNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/adminhome">Home <span class="sr-only"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;Home</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminmovies"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminreviews" data-toggle="collapse"><i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;Reviews</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  routerLink="/adminusers"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;logout</a>
+          </li>
+      </ul>
+
+    </div>
+  </nav>
+  <div class="container-fluid" id="main">
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
+        
+      </div>
+     
+
+      <div class="col-md-9 col-lg-10 main">
+
+       
+
+        <h1 class="display-2 hidden-xs-down">
+            Cineview Dashboard
+            </h1>
+        
+
+        <div class="alert alert-warning fade collapse" role="alert" id="myAlert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+          <strong>Holy guacamole!</strong> It's free.. this is an example theme.
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-inverse card-success">
+              <div class="card-block bg-success">
+                <div class="rotate">
+                  <i class="fa fa-user fa-5x"></i>
+                </div>
+                <h6 class="text-uppercase">Users</h6>
+                <h1 class="display-1">{{userLength}}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-inverse card-danger">
+              <div class="card-block bg-danger">
+                <div class="rotate">
+                  <i class="fa fa-film fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Movies</h6>
+                <h1 class="display-1">{{moviesLength}}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-inverse card-info">
+              <div class="card-block bg-info">
+                <div class="rotate">
+                  <i class="fa fa-comments-o fa-5x"></i>
+                </div>
+                <h6 class="text-uppercase">Reviews</h6>
+                <h1 class="display-1">{{commentsLength}}</h1>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+     
+      </div>
+      <!--/main col-->
+    </div>
+
+  </div>
+  <!--/.container-->
+  
+  <!-- <script>
+    // sandbox disable popups
+    if (window.self !== window.top && window.name != "view1") {
+      window.alert = function() {
+        /*disable alert*/
+      };
+      window.confirm = function() {
+        /*disable confirm*/
+      };
+      window.prompt = function() {
+        /*disable prompt*/
+      };
+      window.open = function() {
+        /*disable open*/
+      };
+    }
+    
+    // prevent href=# click jump
+     document.addEventListener(
+       "DOMContentLoaded",
+       function() {
+         var links = document.getElementsByTagName("A");
+         for (var i = 0; i < links.length; i++) {
+           if (links[i].href.indexOf("#") != -1) {
+             links[i].addEventListener("click", function(e) {
+               console.debug("prevent href=# click");
+               if (this.hash) {
+                 if (this.hash == "#") {
+                   e.preventDefault();
+                   return false;
+                 } else {
+                   /*
+                      var el = document.getElementById(this.hash.replace(/#/, ""));
+                      if (el) {
+                        el.scrollIntoView(true);
+                      }
+                      */
+                }
+              }
+              return false;
+            });
+          }
+        }
+      },
+      false
+    );
+  </script> -->
+
+  <!--scripts loaded here-->
+
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+ -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $("[data-toggle=offcanvas]").click(function() {
+        $(".row-offcanvas").toggleClass("active");
+      });
+    });
+  </script> -->
+
+</body>
+
+</html>

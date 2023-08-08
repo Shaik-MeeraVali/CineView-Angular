@@ -1,0 +1,299 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap 4 Dashboard</title>
+  <base target="_self">
+  <meta name="description" content="A Bootstrap 4 admin dashboard theme that will get you started. The sidebar toggles off-canvas on smaller screens. This example also include large stat blocks, modal and cards. The top navbar is controlled by a separate hamburger toggle button."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" value="notranslate">
+  <link rel="shortcut icon" href="/images/cp_ico.png">
+
+
+  <!--stylesheets / link tags loaded here-->
+
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+  <style type="text/css">
+    
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="flex-row d-flex">
+      <a class="navbar-brand mb-1" href="#"><i class="fa fa-film" aria-hidden="true"></i> CineView</a>
+      
+    </div>
+    <div class="navbar-collapse collapse" id="collapsingNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/adminhome">Home <span class="sr-only"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;Home</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminmovies"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminreviews"><i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;Reviews</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  routerLink="/adminusers"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()" data-target="#myModal" data-toggle="modal"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;logout</a>
+          </li>
+      </ul>
+
+    </div>
+  </nav>
+  <div class="container-fluid" id="main">
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
+        </div>
+        
+     
+
+      <div class="col-md-9 col-lg-10 main">
+
+       
+
+        <h5 class="display-4 hidden-xs-down">
+            Cineview Users
+            </h5>
+            <div class="container">
+                <div class="row">
+                    
+                    
+                    <div class="col-md-12">
+                   
+                    <div class="table-responsive">
+            
+                            
+                          <table id="mytable" class="table table-bordred table-striped">
+                               
+                               <thead>
+                               
+                             
+                               <th>id</th>
+                               <th> Name</th>
+                              <th>Email</th>
+                                 <th>Password</th>
+                                 <th>Roles</th>
+                                  <th>Edit</th>
+                                  
+                                   <th>Delete</th>
+                               </thead>
+                <tbody>
+                
+                <tr *ngFor="let k of alluser">
+              
+                <td>{{k.id}}</td>
+                <td>
+                  <div *ngIf="k.isEdit">
+                    <input type = "text"   [(ngModel)] = "k.name" class = "form-control"  >
+                </div>
+                <div *ngIf="!k.isEdit">
+                    {{k.name}}
+                </div></td>
+                <td><div *ngIf="k.isEdit">
+                  <input type = "text"   [(ngModel)] = "k.email" class = "form-control"  >
+              </div>
+              <div *ngIf="!k.isEdit">
+                {{k.email}}
+              </div></td>
+                <td>
+                  <div *ngIf="k.isEdit">
+                    <input type = "text"   [(ngModel)] = "k.password" class = "form-control"  >
+                </div>
+                <div *ngIf="!k.isEdit">
+                  {{k.password}}
+                </div></td>
+                <td>
+                  <div *ngIf="k.isEdit">
+                    <input type = "text"   [(ngModel)] = "k.roles" class = "form-control"  >
+                </div>
+                <div *ngIf="!k.isEdit">
+                  {{k.roles}}
+                </div></td>
+
+                <td>
+                  <div *ngIf="k.isEdit">
+                    <button class ="btn btn-sm btn-success"(click)="editUser(k.id,k)">Update</button>
+                    <button class ="btn btn-sm btn-warning" (click)="k.isEdit= false">cancel</button>
+                    </div>
+                    <div *ngIf="!k.isEdit">
+                      <button class ="btn btn-sm btn-success " (click)="onEdit(k)"><i class="fa  fa-edit"></i></button>
+                    </div>
+                  </td>
+                  
+             
+                
+                <td><button class="btn btn-danger "  (click)="deleteUser(k.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                </tr>
+                
+             
+                
+                
+             
+                
+                
+                
+            
+                
+                
+            
+              
+                </tbody>
+                    
+            </table>
+            
+            <div class="clearfix"></div>
+            
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                  <div class="modal-dialog">
+                <div class="modal-content">
+                      <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                  </div>
+                      <div class="modal-body">
+                      <div class="form-group">
+                    <input class="form-control " type="text" placeholder="Mohsin">
+                    </div>
+                    <div class="form-group">
+                    
+                    <input class="form-control " type="text" placeholder="Irshad">
+                    </div>
+                    <div class="form-group">
+                    <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+                
+                    
+                    </div>
+                  </div>
+                      <div class="modal-footer ">
+                    <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                  </div>
+                    </div>
+                <!-- /.modal-content --> 
+              </div>
+                  <!-- /.modal-dialog --> 
+                </div>
+                
+                
+                
+                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                  <div class="modal-dialog">
+                <div class="modal-content">
+                      <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                  </div>
+                      <div class="modal-body">
+                   
+                   <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+                   
+                  </div>
+                    <div class="modal-footer ">
+                    <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                  </div>
+                    </div>
+                <!-- /.modal-content --> 
+              </div>
+                  <!-- /.modal-dialog --> 
+                </div>
+        
+
+        
+
+        
+     
+      </div>
+      <!--/main col-->
+    </div>
+
+  </div>
+
+  
+  <!-- <script>
+    // sandbox disable popups
+    if (window.self !== window.top && window.name != "view1") {
+      window.alert = function() {
+        /*disable alert*/
+      };
+      window.confirm = function() {
+        /*disable confirm*/
+      };
+      window.prompt = function() {
+        /*disable prompt*/
+      };
+      window.open = function() {
+        /*disable open*/
+      };
+    }
+    
+    // prevent href=# click jump
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+        var links = document.getElementsByTagName("A");
+        for (var i = 0; i < links.length; i++) {
+          if (links[i].href.indexOf("#") != -1) {
+            links[i].addEventListener("click", function(e) {
+              console.debug("prevent href=# click");
+              if (this.hash) {
+                if (this.hash == "#") {
+                  e.preventDefault();
+                  return false;
+                } else {
+                  /*
+                      var el = document.getElementById(this.hash.replace(/#/, ""));
+                      if (el) {
+                        el.scrollIntoView(true);
+                      }
+                      */
+                }
+              }
+              return false;
+            });
+          }
+        }
+      },
+      false
+    );
+  </script>
+
+  scripts loaded here-->
+
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+
+  <script>
+    $(document).ready(function() {
+      $("[data-toggle=offcanvas]").click(function() {
+        $(".row-offcanvas").toggleClass("active");
+      });
+    });
+  </script> -->
+
+</body>
+
+</html>

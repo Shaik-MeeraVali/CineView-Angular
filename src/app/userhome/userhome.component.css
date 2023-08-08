@@ -1,0 +1,11 @@
+ul li a{
+    margin-right: 20px;
+}
+
+#form-buscar >.form-group >.input-group > .input-group-btn > .btn{
+    height: 40px; 
+    font-size: 16px;
+    font-weight: 300; 
+     
+   
+}

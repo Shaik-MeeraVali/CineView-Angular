@@ -1,0 +1,211 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <title>Cineview</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+  </head>
+<nav class="navbar navbar-expand-sm   navbar-light bg-light">
+        <a class="navbar-brand" href="#"><i class="fa fa-film" aria-hidden="true"></i> CineView</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <span class="nav-link">Welcome  {{loginName}}</span>
+              </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href=""><i class="fa fa-user" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+            </li>
+            
+           
+         
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+          </li>
+          
+          </ul>
+          
+        </div>
+      </nav>
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{nb.movieUrl}}" alt=""/>
+                         
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{nb.movieName}}
+                                    </h5>
+                                    <h6>
+                                        {{nb.movieGenre}}
+                                    </h6>
+                                    <p class="proile-rating">RATING : <span>{{nb.movieRatings}}</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About Movie</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <hr class="solid">
+                            <h6>Post Comments and Ratings</h6>
+                            <hr class="solid">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Add Comments</label>
+                                <textarea class="form-control" [(ngModel)]="review.comments" name="reviews" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Select Rating</label>
+                                <select class="form-select" aria-label="Default select example" name="ratings" [(ngModel)]="review.rating">
+                                    <option  selected value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                  </select>
+                              </div>
+                              <!-- <div class="form-group">
+                                <input class="form-control" name="movieId" value="{{nb.movieId}}" hidden [(ngModel)]="review.movieId">
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="movietitle" hidden value="{{nb.movieName}}" [(ngModel)]="review.title">
+                              </div> -->
+                              <div class="form-group">
+                                <button type="text" class="btn btn-primary" type="submit" (click)="postReview()">post comments</button>
+                              </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Lead Role</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.leadRole}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Director</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.director}}</p>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Language</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.movieLanguage}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Release year</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.movieReleasingYear}}</p>
+                                            </div>
+                                        </div>
+                                        <hr class="solid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Reviews</label>
+                                            </div>
+                                            <div class="col-md-6" >
+                                                <p  class="" *ngFor="let k of nb.movieReviews">{{k}}</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Experience</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Hourly Rate</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>10$/hr</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Total Projects</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>230</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>English Level</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Availability</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6 months</p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <p>Your detail description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+        <script>
+            function showPassword(){
+    var x= document.getElementById("myId");
+    if (x.type ==="password"){
+        x.type="text";
+    }
+    else
+        x.type="password";
+}
+        </script>

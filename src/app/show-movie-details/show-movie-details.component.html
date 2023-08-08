@@ -1,0 +1,197 @@
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap 4 Dashboard</title>
+  <base target="_self">
+  <meta name="description" content="A Bootstrap 4 admin dashboard theme that will get you started. The sidebar toggles off-canvas on smaller screens. This example also include large stat blocks, modal and cards. The top navbar is controlled by a separate hamburger toggle button."
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" value="notranslate">
+  <link rel="shortcut icon" href="/images/cp_ico.png">
+
+
+  <!--stylesheets / link tags loaded here-->
+
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+  <style type="text/css">
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="flex-row d-flex">
+      <a class="navbar-brand mb-1" href="#"><i class="fa fa-film" aria-hidden="true"></i> CineView</a>
+    </div>
+    <div class="navbar-collapse collapse" id="collapsingNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink=""><i class="fa fa-home" aria-hidden="true"></i>Home <span class="sr-only"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;Home</span></a>
+        </li>
+        <li class="nav-item active" >
+          <a class="nav-link" routerLink="/newMovies"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movies</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;login</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Register</a>
+          </li>
+        
+          
+      </ul>
+
+    </div>
+  </nav>
+
+
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{nb.movieUrl}}" alt=""/>
+                         
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{nb.movieName}}
+                                    </h5>
+                                    <h6>
+                                        {{nb.movieGenre}}
+                                    </h6>
+                                    <p class="proile-rating">RATING : <span>{{nb.movieRatings}}</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About Movie</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Lead Role</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.leadRole}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Director</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.director}}</p>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Language</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.movieLanguage}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Release year</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{nb.movieReleasingYear}}</p>
+                                            </div>
+                                        </div>
+                                        <hr class="solid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Reviews</label>
+                                            </div>
+                                            <div class="col-md-6" >
+                                                <p  class="" *ngFor="let k of nb.movieReviews">{{k}}</p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Experience</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Hourly Rate</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>10$/hr</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Total Projects</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>230</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>English Level</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>Expert</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Availability</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>6 months</p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br/>
+                                        <p>Your detail description</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+        <script>
+            function showPassword(){
+    var x= document.getElementById("myId");
+    if (x.type ==="password"){
+        x.type="text";
+    }
+    else
+        x.type="password";
+}
+        </script>
+</body>
+</html>
